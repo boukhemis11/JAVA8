@@ -1,0 +1,2 @@
+1/ExceptionDate sert à enlever les exption des date , elle est utilisé dans la méthode CtrlDate(String d) de la classe Controles, cette classe peut enlever une exception une fois nous rentrons un mauvais formate de date avec le message("Mauvais format de date saisi").
+2/la classe TestSaisies nous permet de controller les information saisi avant de les stocker pour éviter ld'entrer des fausses formations.
