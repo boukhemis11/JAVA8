@@ -3,9 +3,7 @@ package projPOO01.Controles;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import projPOO01.Exceptions.ExceptionContratAgence;
 import projPOO01.Exceptions.ExceptionDate;
-import projPOO01.Exceptions.ExceptionDuree;
 import projPOO01.Exceptions.ExceptionInt;
 
 /**

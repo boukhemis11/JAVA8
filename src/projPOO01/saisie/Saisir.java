@@ -1,6 +1,11 @@
 package projPOO01.saisie;
 
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -26,7 +31,21 @@ public class Saisir {
 	public static Patron patron = new Patron();
 	public static ArrayList<Personne> listclient = new ArrayList<Personne>();
 	public static ArrayList<Personne> listsalarie = new ArrayList<Personne>();
+	public static ArrayList<Personne> listinterimaire = new ArrayList<Personne>();
 	public static ArrayList<Personne> listfournisseur = new ArrayList<Personne>();
+	
+	public static Instant instant = Instant.now();
+	public static ZoneId zi = ZoneId.of("Europe/Paris");
+	
+	public static void durationSaisi(ZonedDateTime time1) {
+		Duration duration = Duration.between(time1, Instant.now());
+		System.out.println(duration.toNanos());
+		StringBuilder builder = new StringBuilder();
+		builder.append("Durée de la saisie : ").append(duration.getSeconds()).append(" sec.");
+		builder.append(" Date : ").append(ZonedDateTime.now(zi).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")));
+		
+		System.out.println(builder.toString());
+	}
 	
 	public static void SaisirAll(){
 		
@@ -40,6 +59,8 @@ public class Saisir {
 	
 	
 	public static void SaisirPatron() {
+
+		ZonedDateTime a = ZonedDateTime.now(zi);
 		boolean erreurcp;
 		boolean erreurns;
 		System.out.println("Saisir le nom du patron");
@@ -76,8 +97,7 @@ public class Saisir {
 				System.out.println(e.getMessage());
 			}
 		}
-		
-		
+			
 		
 		System.out.println("Saisir le salaire du patron");
 		while(Menus.sc.hasNext())
@@ -92,16 +112,19 @@ public class Saisir {
 				System.out.println("Saisir le salaire du patron");
 				Menus.sc.next();
 			}
-				
+	
 		}
+		durationSaisi(a);
 		if(Menus.choixmenu!=1) {
+
 			Menus.Menu();
 		}
+
 		return;
 	}
 
 	public static void SaisirSalarie(){
-		
+		ZonedDateTime a = ZonedDateTime.now(zi);
 		ArrayList<Salarie> sl = new ArrayList<Salarie>();
 		String nom, prenom, adresse, ville, codepostal="", secu = null;
 		double salaire=0;
@@ -169,6 +192,8 @@ public class Saisir {
 		}
 		
 		listsalarie = new ArrayList<Personne>(sl);
+		durationSaisi(a);
+
 		if(Menus.choixmenu!=1) {
 			Menus.Menu();
 		}
@@ -177,7 +202,7 @@ public class Saisir {
 	
 	public static void SaisirInterimaire(){
 		
-		ArrayList<Interimaire> sl = new ArrayList<Interimaire>();
+		ArrayList<Interimaire> il = new ArrayList<Interimaire>();
 		String nom, prenom, adresse, ville, codepostal="", secu = null, contratAgence = null;
 		double salaire=0;
 		int duree = 0;
@@ -267,12 +292,12 @@ public class Saisir {
 			}
 			
 			
-			Interimaire s = new Interimaire(nom, prenom, adresse, ville, codepostal, secu, salaire, duree, contratAgence);
+			Interimaire in = new Interimaire(nom, prenom, adresse, ville, codepostal, secu, salaire, duree, contratAgence);
 			
-			sl.add(s);
+			il.add(in);
 		}
 		
-		listsalarie = new ArrayList<Personne>(sl);
+		listinterimaire = new ArrayList<Personne>(il);
 		if(Menus.choixmenu!=1) {
 			Menus.Menu();
 		}
@@ -518,5 +543,7 @@ public class Saisir {
 		return cmd;
 		
 	}
+	
+
 	
 }

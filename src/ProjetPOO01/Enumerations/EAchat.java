@@ -3,7 +3,7 @@ package ProjetPOO01.Enumerations;
 /**
  * Enumeration des liste d'achat
  * 
- * @author Boukhemis Dib
+ * @author Boukhemis dib
  * @date 18/03/2020
  *
  */
